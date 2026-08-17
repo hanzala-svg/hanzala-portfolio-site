@@ -28,6 +28,8 @@ const orbitalAccent = "/manus-storage/orbital-3d-accent_ef01676e.png";
 const hsWearVisual = "/manus-storage/hs-wear-visual_100f29fd.png";
 const bySalmaVisual = "/manus-storage/by-salma-visual_0dc321ab.png";
 const aiSaasVisual = "/manus-storage/ai-saas-chatbot-visual_823d6f12.png";
+const hsWearMobileVisual = "/manus-storage/hs-wear-mobile-visual_1d6d2de9.png";
+const bySalmaMobileVisual = "/manus-storage/by-salma-mobile-visual_d03af270.png";
 const heroTexture = "/manus-storage/signal-noir-hero_c51bf882.png";
 const hsWorkspaceVisual = "/manus-storage/hs-workspace-visual_c5a9914e.png";
 const zyvenoxVisual = "/manus-storage/zyvenox-lab-visual_87e242f2.png";
@@ -78,6 +80,12 @@ const projects = [
     tags: ["E-COMMERCE", "PRODUCT UI", "CHECKOUT", "PERFORMANCE"],
     tone: "gold",
     link: "https://hswear.store",
+    details: {
+      overview: "A dark editorial storefront for fashion discovery, designed to make products feel tactile and easy to explore across desktop and mobile.",
+      responsibilities: "Product UI direction, responsive storefront implementation, product discovery patterns, and performance-minded interaction design.",
+      stack: ["React.js", "TypeScript", "Responsive UI", "E-commerce flows", "Performance optimization"],
+      screenshots: [hsWearVisual, hsWearMobileVisual],
+    },
   },
   {
     number: "04",
@@ -87,6 +95,12 @@ const projects = [
     image: bySalmaVisual,
     tags: ["JEWELRY", "SHOPIFY", "UI/UX", "CONVERSION"],
     tone: "stone",
+    details: {
+      overview: "A refined jewelry-store experience built around product storytelling, detail photography, and a calm, luxury-first buying journey.",
+      responsibilities: "Visual direction, responsive product presentation, collection browsing, conversion-focused layout, and mobile experience design.",
+      stack: ["React.js", "Shopify", "Product UI", "Responsive design", "Conversion UX"],
+      screenshots: [bySalmaVisual, bySalmaMobileVisual],
+    },
   },
   {
     number: "05",
@@ -103,22 +117,26 @@ const skillGroups = [
   {
     icon: Code2,
     title: "Frontend architecture",
+    category: "WEB",
     items: ["React.js", "TypeScript", "Responsive UI", "Accessibility"],
   },
   {
     icon: Server,
     title: "Distributed backend",
+    category: "WEB",
     items: ["Node.js", "Express.js", "REST APIs", "JWT / RBAC"],
   },
   {
     icon: Database,
     title: "Cloud & data",
+    category: "WEB",
     items: ["MongoDB", "AWS EC2", "Docker", "Nginx / PM2"],
   },
   {
     icon: Sparkles,
     title: "AI & optimization",
-    items: ["Generative AI", "Technical SEO", "Core Web Vitals", "Git / GitHub"],
+    category: "AI",
+    items: ["Generative AI", "AI chatbot flows", "Technical SEO", "Core Web Vitals"],
   },
 ];
 
@@ -151,6 +169,8 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [sent, setSent] = useState(false);
   const [projectFilter, setProjectFilter] = useState("ALL WORK");
+  const [selectedProject, setSelectedProject] = useState<typeof projects[number] | null>(null);
+  const [skillFocus, setSkillFocus] = useState("ALL SKILLS");
   const [puzzlePoint, setPuzzlePoint] = useState({ x: 50, y: 50 });
   const [puzzleReady, setPuzzleReady] = useState(false);
   const puzzlePieces = useMemo(() => Array.from({ length: 1000 }, (_, index) => index), []);
@@ -250,7 +270,7 @@ export default function Home() {
             <article className={`project-card project-${project.tone}`} key={project.title}>
               <div className="project-number">{project.number}</div>
               <div className="project-visual"><img src={project.image} alt={`${project.title} project preview`} /><div className="visual-overlay"><span>VIEW CASE STUDY</span><ArrowUpRight size={18} /></div></div>
-              <div className="project-info"><p className="project-category">{project.category}</p><h3>{project.title}</h3><p className="project-description">{project.description}</p><div className="tag-list">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>{project.link ? <a className="project-link" href={project.link} target="_blank" rel="noreferrer">Visit live store <ArrowUpRight size={15} /></a> : <button className="project-link" onClick={() => setSent(false)}>Explore project <ChevronRight size={15} /></button>}</div>
+              <div className="project-info"><p className="project-category">{project.category}</p><h3>{project.title}</h3><p className="project-description">{project.description}</p><div className="tag-list">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>{project.details ? <button className="project-link" onClick={() => setSelectedProject(project)}>View project details <ArrowUpRight size={15} /></button> : <button className="project-link" onClick={() => setSent(false)}>Explore project <ChevronRight size={15} /></button>}</div>
             </article>
           ))}
         </div>
@@ -258,9 +278,11 @@ export default function Home() {
 
       <section id="skills" className="section-wrap skills-section">
         <div className="section-heading"><p className="section-kicker">03 / TECH STACK</p><span className="heading-rule" /></div>
-        <div className="skills-header"><h2>Systems that hold<br /><em>under pressure.</em></h2><p>Modern tools matter. Knowing when—and how—to use them matters more.</p></div>
-        <div className="skill-grid">{skillGroups.map(({ icon: Icon, title, items }) => <article className="skill-card" key={title}><Icon size={22} strokeWidth={1.5} /><h3>{title}</h3><div>{items.map((item) => <span key={item}><Check size={12} />{item}</span>)}</div></article>)}</div>
+        <div className="skills-header"><div><h2>Systems that hold<br /><em>under pressure.</em></h2><div className="skill-filters" role="tablist" aria-label="Filter skills"><button className={skillFocus === "ALL SKILLS" ? "active" : ""} onClick={() => setSkillFocus("ALL SKILLS")}>ALL SKILLS</button><button className={skillFocus === "AI" ? "active" : ""} onClick={() => setSkillFocus("AI")}>AI / DATA</button><button className={skillFocus === "WEB" ? "active" : ""} onClick={() => setSkillFocus("WEB")}>WEB / CLOUD</button></div></div><p>Modern tools matter. Knowing when—and how—to use them matters more. Select a lane to see the technologies used across the work.</p></div>
+        <div className="skill-grid">{skillGroups.map(({ icon: Icon, title, items, category }) => <article className={`skill-card ${skillFocus !== "ALL SKILLS" && skillFocus !== category ? "skill-card-muted" : ""}`} key={title} onClick={() => setSkillFocus(category)}><Icon size={22} strokeWidth={1.5} /><p className="skill-category">{category === "AI" ? "AI / DATA" : "WEB / CLOUD"}</p><h3>{title}</h3><div>{items.map((item) => <span key={item}><Check size={12} />{item}</span>)}</div></article>)}</div>
       </section>
+
+      {selectedProject && selectedProject.details && <div className="project-modal-backdrop" role="presentation" onClick={() => setSelectedProject(null)}><article className="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title" onClick={(event) => event.stopPropagation()}><button className="modal-close" onClick={() => setSelectedProject(null)} aria-label="Close project details"><X size={19} /></button><div className="modal-gallery">{selectedProject.details.screenshots.map((shot, index) => <img key={shot} src={shot} alt={`${selectedProject.title} screenshot ${index + 1}`} />)}</div><div className="modal-copy"><p className="project-category">{selectedProject.category}</p><h2 id="project-modal-title">{selectedProject.title}</h2><p>{selectedProject.details.overview}</p><p className="modal-responsibility"><strong>Role & contribution</strong>{selectedProject.details.responsibilities}</p><div className="modal-stack"><span>TECH STACK</span><div>{selectedProject.details.stack.map((tech) => <span key={tech}><Check size={12} />{tech}</span>)}</div></div>{selectedProject.link && <a className="button button-primary" href={selectedProject.link} target="_blank" rel="noreferrer">Visit live store <ArrowUpRight size={15} /></a>}</div></article></div>}
 
       <section id="experience" className="section-wrap experience-section">
         <div className="section-heading"><p className="section-kicker">04 / EXPERIENCE</p><span className="heading-rule" /></div>

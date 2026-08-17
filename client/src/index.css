@@ -111,14 +111,38 @@ h2 { font-size:clamp(38px,5.4vw,75px); line-height:.98; letter-spacing:-.065em; 
 .skills-header { display:flex; align-items:end; justify-content:space-between; padding:70px 0 55px; }
 .skills-header h2 { margin:0; }
 .skills-header p { width:230px; margin:0; color:var(--muted); line-height:1.65; }
+.skill-filters { display:flex; flex-wrap:wrap; gap:14px; margin-top:28px; }
+.skill-filters button { color:var(--muted); font:500 9px/'Space Grotesk',sans-serif; letter-spacing:.14em; padding-bottom:7px; border-bottom:1px solid transparent; transition:color .2s, border-color .2s; }
+.skill-filters button:hover, .skill-filters button.active { color:var(--gold-soft); border-color:var(--gold); }
 .skill-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
 .skill-card { min-height:235px; padding:28px 23px; background:var(--bg); transition:background .25s; }
 .skill-card:hover { background:var(--panel-2); }
+.skill-card-muted { opacity:.35; filter:saturate(.4); }
+.skill-card-muted:hover { opacity:.75; }
 .skill-card svg { color:var(--gold); }
 .skill-card h3 { margin:55px 0 20px; font-size:17px; letter-spacing:-.03em; }
 .skill-card div { display:flex; flex-direction:column; gap:10px; color:var(--muted); font-size:12px; }
 .skill-card div span { display:flex; align-items:center; gap:7px; }
 .skill-card div svg { color:var(--gold); }
+.skill-category { margin:18px 0 0; color:var(--gold); font:500 8px/'Space Grotesk',sans-serif; letter-spacing:.14em; }
+.project-modal-backdrop { position:fixed; z-index:50; inset:0; display:grid; place-items:center; padding:28px; background:rgba(3,3,3,.82); backdrop-filter:blur(16px); animation:modalFade .2s var(--ease-out); }
+.project-modal { position:relative; display:grid; grid-template-columns:1.05fr .95fr; width:min(940px,100%); max-height:min(720px,90vh); overflow:auto; background:#111210; border:1px solid var(--line); box-shadow:0 30px 90px rgba(0,0,0,.55); animation:modalRise .28s var(--ease-out); }
+.modal-close { position:absolute; z-index:2; top:15px; right:15px; display:grid; place-items:center; width:34px; height:34px; color:var(--gold-soft); background:rgba(10,10,10,.72); border:1px solid var(--line); }
+.modal-gallery { display:grid; grid-template-columns:1.25fr .75fr; gap:10px; min-height:480px; padding:18px; background:#0b0c0b; }
+.modal-gallery img { width:100%; height:100%; min-height:200px; object-fit:cover; border:1px solid rgba(212,175,55,.24); filter:saturate(.8); }
+.modal-gallery img:nth-child(2) { object-position:center; }
+.modal-copy { padding:58px 42px 42px; }
+.modal-copy h2 { margin:12px 0 20px; font-size:clamp(42px,5vw,65px); }
+.modal-copy > p { color:var(--stone); line-height:1.7; }
+.modal-responsibility { display:flex; flex-direction:column; gap:8px; margin-top:26px; padding-top:20px; border-top:1px solid var(--line); }
+.modal-responsibility strong { color:var(--gold-soft); font:500 9px/'Space Grotesk',sans-serif; letter-spacing:.14em; text-transform:uppercase; }
+.modal-stack { margin:28px 0 32px; }
+.modal-stack > span { color:var(--gold); font:500 9px/'Space Grotesk',sans-serif; letter-spacing:.14em; }
+.modal-stack > div { display:flex; flex-wrap:wrap; gap:7px; margin-top:13px; }
+.modal-stack > div > span { display:inline-flex; align-items:center; gap:6px; padding:7px 8px; color:var(--stone); background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.09); font-size:10px; }
+.modal-stack svg { color:var(--gold); }
+@keyframes modalFade { from { opacity:0; } to { opacity:1; } }
+@keyframes modalRise { from { opacity:0; transform:translateY(18px) scale(.98); } to { opacity:1; transform:translateY(0) scale(1); } }
 .experience-section { padding-bottom:190px; }
 .experience-layout { display:grid; grid-template-columns:.8fr 1.2fr; gap:11vw; padding-top:75px; }
 .experience-layout h2 { margin:0; }
@@ -132,6 +156,7 @@ h2 { font-size:clamp(38px,5.4vw,75px); line-height:.98; letter-spacing:-.065em; 
 .timeline-content .timeline-company { color:var(--stone); font-size:13px; }
 .timeline-date { font-size:9px; }
 .contact-section { padding-top:80px; padding-bottom:120px; border-top:1px solid var(--line); }
+@media (max-width:680px) { .project-modal-backdrop { padding:14px; } .project-modal { display:block; max-height:92vh; } .modal-gallery { min-height:280px; grid-template-columns:1fr 78px; padding:12px; } .modal-gallery img { min-height:160px; } .modal-copy { padding:45px 22px 25px; } .modal-copy h2 { font-size:44px; } .skill-filters { margin-top:20px; } }
 .contact-mark { display:flex; align-items:center; gap:12px; color:var(--gold); }
 .contact-layout { display:grid; grid-template-columns:1fr .8fr; gap:11vw; padding-top:75px; }
 .contact-layout h2 { margin-bottom:25px; }
