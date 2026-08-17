@@ -16,8 +16,11 @@ button { border:0; color:inherit; background:none; cursor:pointer; }
 .portfolio-shell { min-height:100vh; overflow:hidden; background:radial-gradient(circle at 75% 5%, rgba(212,175,55,.06), transparent 26rem), var(--bg); }
 .section-wrap { width:min(1280px,100%); margin:0 auto; padding-left:clamp(24px,6vw,96px); padding-right:clamp(24px,6vw,96px); }
 .site-header { position:fixed; z-index:20; top:0; left:0; right:0; height:78px; display:flex; align-items:center; justify-content:space-between; padding:0 clamp(24px,5vw,72px); background:rgba(10,10,10,.78); border-bottom:1px solid rgba(255,255,255,.06); backdrop-filter:blur(18px); }
+.site-header:after { content:""; position:absolute; right:clamp(20px,4vw,64px); bottom:-12px; width:42%; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:.22; }
 .brand { display:flex; align-items:center; gap:12px; }
 .brand-mark { width:31px; height:31px; display:grid; place-items:center; border:1px solid var(--gold); transform:rotate(45deg); overflow:hidden; }
+.brand-mark-refined { width:42px; height:42px; border-width:1px; box-shadow:0 0 0 5px rgba(212,175,55,.04); }
+.brand-mark-refined img { width:36px; height:36px; }
 .brand-mark img { width:23px; height:23px; object-fit:contain; transform:rotate(-45deg); }
 .brand-name { font:600 13px/'Space Grotesk',sans-serif; letter-spacing:.15em; }
 .brand-name span { color:var(--gold); margin-left:4px; }
@@ -26,8 +29,10 @@ button { border:0; color:inherit; background:none; cursor:pointer; }
 .primary-nav button span { color:var(--gold); font-size:9px; }
 .primary-nav button:hover { color:var(--white); }
 .menu-toggle { display:none; }
-.side-index { position:fixed; z-index:10; left:26px; top:44%; display:flex; flex-direction:column; gap:12px; color:#5f615b; font:500 9px/'Space Grotesk',sans-serif; letter-spacing:.16em; writing-mode:vertical-rl; transform:rotate(180deg); }
+.side-index { position:fixed; z-index:10; left:26px; top:38%; display:flex; flex-direction:column; gap:12px; color:#5f615b; font:500 9px/'Space Grotesk',sans-serif; letter-spacing:.16em; writing-mode:vertical-rl; transform:rotate(180deg); }
+.side-index:before { content:""; position:absolute; left:-13px; top:-18px; width:30px; height:130px; border:1px solid rgba(212,175,55,.18); pointer-events:none; }
 .side-index-line { height:55px; border-left:1px solid var(--gold); opacity:.7; }
+.side-index-signal { color:var(--gold); font-size:14px; margin-top:5px; }
 .hero-section { min-height:820px; position:relative; display:grid; grid-template-columns:1.1fr .9fr; align-items:center; gap:7vw; padding-top:140px; }
 .hero-backdrop { position:absolute; inset:0 -20vw 0 28%; background-position:center; background-size:cover; opacity:.18; mask-image:linear-gradient(90deg,transparent 0%,#000 50%,transparent 100%); animation:slowDrift 18s ease-in-out infinite alternate; }
 .orbital-accent { position:absolute; z-index:0; right:-5%; top:18%; width:min(54vw,700px); aspect-ratio:16/9; background-position:center; background-size:cover; opacity:.23; mix-blend-mode:screen; mask-image:radial-gradient(ellipse, #000 20%, transparent 75%); animation:orbitalFloat 11s ease-in-out infinite alternate; pointer-events:none; }
@@ -80,9 +85,11 @@ h2 { font-size:clamp(38px,5.4vw,75px); line-height:.98; letter-spacing:-.065em; 
 .signal-stats > div { padding:28px 20px 23px 0; border-right:1px solid var(--line); }
 .signal-stats > div:not(:first-child) { padding-left:24px; }
 .signal-stats > div:last-child { border-right:0; }
-.signal-stats strong { display:block; color:var(--white); font:500 clamp(32px,4vw,54px)/1 'Space Grotesk',sans-serif; letter-spacing:-.06em; }
+.signal-stats strong { display:block; color:var(--gold-soft); font:500 clamp(24px,3vw,42px)/1 'Space Grotesk',sans-serif; letter-spacing:.02em; }
 .signal-stats strong span { color:var(--gold); font-size:.55em; }
-.signal-stats small { display:block; margin-top:10px; color:var(--muted); font:500 9px/'Space Grotesk',sans-serif; letter-spacing:.14em; }
+.signal-stats small { display:block; margin-top:10px; color:var(--muted); font:500 8px/'Space Grotesk',sans-serif; letter-spacing:.14em; }
+.editorial-notes > div { position:relative; }
+.editorial-notes > div:after { content:""; position:absolute; right:24px; top:32px; width:5px; height:5px; border-radius:50%; background:var(--gold); box-shadow:0 0 16px var(--gold); opacity:.7; }
 .projects-section { padding-bottom:180px; }
 .project-filter { display:flex; gap:16px; margin-left:auto; }
 .project-filter button { color:var(--muted); font:500 9px/'Space Grotesk',sans-serif; letter-spacing:.14em; }
@@ -156,7 +163,7 @@ h2 { font-size:clamp(38px,5.4vw,75px); line-height:.98; letter-spacing:-.065em; 
 .timeline-content .timeline-company { color:var(--stone); font-size:13px; }
 .timeline-date { font-size:9px; }
 .contact-section { padding-top:80px; padding-bottom:120px; border-top:1px solid var(--line); }
-@media (max-width:680px) { .project-modal-backdrop { padding:14px; } .project-modal { display:block; max-height:92vh; } .modal-gallery { min-height:280px; grid-template-columns:1fr 78px; padding:12px; } .modal-gallery img { min-height:160px; } .modal-copy { padding:45px 22px 25px; } .modal-copy h2 { font-size:44px; } .skill-filters { margin-top:20px; } }
+@media (max-width:680px) { .site-header:after { width:34%; } .brand-mark-refined { width:36px; height:36px; } .brand-mark-refined img { width:31px; height:31px; } .side-index { left:10px; transform:rotate(180deg) scale(.82); transform-origin:left center; } .editorial-notes > div:after { display:none; } .project-modal-backdrop { padding:14px; } .project-modal { display:block; max-height:92vh; } .modal-gallery { min-height:280px; grid-template-columns:1fr 78px; padding:12px; } .modal-gallery img { min-height:160px; } .modal-copy { padding:45px 22px 25px; } .modal-copy h2 { font-size:44px; } .skill-filters { margin-top:20px; } }
 .contact-mark { display:flex; align-items:center; gap:12px; color:var(--gold); }
 .contact-layout { display:grid; grid-template-columns:1fr .8fr; gap:11vw; padding-top:75px; }
 .contact-layout h2 { margin-bottom:25px; }

@@ -22,8 +22,8 @@ import {
 } from "lucide-react";
 
 const headshot = "/manus-storage/hanzala-headshot_49da4d3e.png";
-const logo = "/manus-storage/hs-mark_ba686cc8.png";
-const cvUrl = "/manus-storage/Hanzala-Saqib-CV_f4cb2f57.pdf";
+const logo = "/manus-storage/hs-monogram-refined_d09432c6.png";
+const cvUrl = "/manus-storage/Hanzala-Saqib-AI-FullStack-Resume_0738766f.pdf";
 const orbitalAccent = "/manus-storage/orbital-3d-accent_ef01676e.png";
 const hsWearVisual = "/manus-storage/hs-wear-visual_100f29fd.png";
 const bySalmaVisual = "/manus-storage/by-salma-visual_0dc321ab.png";
@@ -34,21 +34,6 @@ const heroTexture = "/manus-storage/signal-noir-hero_c51bf882.png";
 const hsWorkspaceVisual = "/manus-storage/hs-workspace-visual_c5a9914e.png";
 const zyvenoxVisual = "/manus-storage/zyvenox-lab-visual_87e242f2.png";
 
-function CountUp({ value, suffix = "", duration = 1300 }: { value: number; suffix?: string; duration?: number }) {
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    let frame = 0;
-    const start = performance.now();
-    const tick = (now: number) => {
-      const progress = Math.min((now - start) / duration, 1);
-      setCount(Math.floor((1 - Math.pow(1 - progress, 3)) * value));
-      if (progress < 1) frame = requestAnimationFrame(tick);
-    };
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, [value, duration]);
-  return <>{count}{suffix}</>;
-}
 
 const projects = [
   {
@@ -192,7 +177,7 @@ export default function Home() {
     <main className="portfolio-shell">
       <header className="site-header">
         <a className="brand" href="#top" aria-label="Hanzala Saqib home">
-          <span className="brand-mark"><img src={logo} alt="HS" /></span>
+          <span className="brand-mark brand-mark-refined"><img src={logo} alt="HS monogram" /></span>
           <span className="brand-name">HANZALA<span>SAQIB</span></span>
         </a>
         <nav className={menuOpen ? "primary-nav is-open" : "primary-nav"} aria-label="Primary navigation">
@@ -208,9 +193,10 @@ export default function Home() {
       </header>
 
       <div id="top" className="side-index" aria-hidden="true">
-        <span>HS / 2026</span>
+        <span className="side-index-label">HS / 2026</span>
         <span className="side-index-line" />
-        <span>FULL STACK · AI · WEB</span>
+        <span className="side-index-label">FULL STACK · AI · WEB</span>
+        <span className="side-index-signal">◈</span>
       </div>
 
       <section className="hero-section section-wrap">
@@ -222,7 +208,7 @@ export default function Home() {
           <p className="hero-lede">Full stack developer and AI product builder translating ambitious ideas into dependable digital experiences.</p>
           <div className="hero-actions">
             <button className="button button-primary" onClick={() => scrollToSection("projects")}>Explore my work <ArrowUpRight size={16} /></button>
-            <a className="button button-quiet" href={cvUrl} download="Hanzala-Saqib-CV.pdf">Download CV <Download size={15} /></a>
+            <a className="button button-quiet" href={cvUrl} download="Hanzala-Saqib-AI-FullStack-Resume.pdf">Download CV <Download size={15} /></a>
           </div>
           <div className="hero-meta"><span>LAHORE, PK</span><span className="meta-rule" /><span>UTC +05:00</span></div>
         </div>
@@ -254,11 +240,11 @@ export default function Home() {
             <a className="text-link" href="https://www.linkedin.com/in/hanzalasaqib" target="_blank" rel="noreferrer">Read the professional profile <ArrowUpRight size={15} /></a>
           </div>
         </div>
-        <div className="signal-stats">
-          <div><strong><CountUp value={40} suffix="+" /></strong><small>PROJECTS SHIPPED</small></div>
-          <div><strong><CountUp value={5} /></strong><small>ACTIVE PROJECT LANES</small></div>
-          <div><strong><CountUp value={4} /></strong><small>CORE DISCIPLINES</small></div>
-          <div><strong><CountUp value={100} suffix="%" /></strong><small>CURIOSITY ACTIVE</small></div>
+        <div className="signal-stats editorial-notes">
+          <div><strong>AI</strong><small>PRODUCT SYSTEMS</small></div>
+          <div><strong>WEB</strong><small>FULL STACK BUILDS</small></div>
+          <div><strong>UX</strong><small>INTERACTION DETAIL</small></div>
+          <div><strong>24/7</strong><small>CURIOUS BY DEFAULT</small></div>
         </div>
       </section>
 
