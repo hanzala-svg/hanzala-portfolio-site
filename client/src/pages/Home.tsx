@@ -21,18 +21,19 @@ import {
   X,
 } from "lucide-react";
 
-const headshot = "/manus-storage/hanzala-headshot_49da4d3e.png";
-const logo = "/manus-storage/hs-monogram-refined_d09432c6.png";
-const cvUrl = "/manus-storage/Hanzala-Saqib-AI-FullStack-Resume_0738766f.pdf";
-const orbitalAccent = "/manus-storage/orbital-3d-accent_ef01676e.png";
-const hsWearVisual = "/manus-storage/hs-wear-visual_100f29fd.png";
-const bySalmaVisual = "/manus-storage/by-salma-visual_0dc321ab.png";
-const aiSaasVisual = "/manus-storage/ai-saas-chatbot-visual_823d6f12.png";
-const hsWearMobileVisual = "/manus-storage/hs-wear-mobile-visual_1d6d2de9.png";
-const bySalmaMobileVisual = "/manus-storage/by-salma-mobile-visual_d03af270.png";
-const heroTexture = "/manus-storage/signal-noir-hero_c51bf882.png";
-const hsWorkspaceVisual = "/manus-storage/hs-workspace-visual_c5a9914e.png";
-const zyvenoxVisual = "/manus-storage/zyvenox-lab-visual_87e242f2.png";
+const asset = (name: string) => `${import.meta.env.BASE_URL}assets/${name}`;
+const headshot = asset("hanzala-headshot.webp");
+const logo = asset("hs-monogram-refined.webp");
+const cvUrl = asset("Hanzala-Saqib-AI-FullStack-Resume.pdf");
+const orbitalAccent = asset("orbital-3d-accent.webp");
+const hsWearVisual = asset("hs-wear-visual.webp");
+const bySalmaVisual = asset("by-salma-visual.webp");
+const aiSaasVisual = asset("ai-saas-chatbot-visual.webp");
+const hsWearMobileVisual = asset("hs-wear-mobile-visual.webp");
+const bySalmaMobileVisual = asset("by-salma-mobile-visual.webp");
+const heroTexture = asset("signal-noir-hero.webp");
+const hsWorkspaceVisual = asset("hs-workspace-visual.webp");
+const zyvenoxVisual = asset("zyvenox-lab-visual.webp");
 
 
 const projects = [
