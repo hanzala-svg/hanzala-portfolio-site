@@ -1,5 +1,5 @@
 // Signal Noir reminder: preserve the charcoal foundation, Signal Gold emphasis, Space Grotesk + DM Sans typography, asymmetric editorial layout, and restrained motion.
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   ArrowUpRight,
   BriefcaseBusiness,
@@ -23,9 +23,30 @@ import {
 
 const headshot = "/manus-storage/hanzala-headshot_49da4d3e.png";
 const logo = "/manus-storage/hs-mark_ba686cc8.png";
+const cvUrl = "/manus-storage/Hanzala-Saqib-CV_f4cb2f57.pdf";
+const orbitalAccent = "/manus-storage/orbital-3d-accent_ef01676e.png";
+const hsWearVisual = "/manus-storage/hs-wear-visual_100f29fd.png";
+const bySalmaVisual = "/manus-storage/by-salma-visual_0dc321ab.png";
+const aiSaasVisual = "/manus-storage/ai-saas-chatbot-visual_823d6f12.png";
 const heroTexture = "/manus-storage/signal-noir-hero_c51bf882.png";
 const hsWorkspaceVisual = "/manus-storage/hs-workspace-visual_c5a9914e.png";
 const zyvenoxVisual = "/manus-storage/zyvenox-lab-visual_87e242f2.png";
+
+function CountUp({ value, suffix = "", duration = 1300 }: { value: number; suffix?: string; duration?: number }) {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    let frame = 0;
+    const start = performance.now();
+    const tick = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      setCount(Math.floor((1 - Math.pow(1 - progress, 3)) * value));
+      if (progress < 1) frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [value, duration]);
+  return <>{count}{suffix}</>;
+}
 
 const projects = [
   {
@@ -47,6 +68,34 @@ const projects = [
     image: zyvenoxVisual,
     tags: ["AGENCY", "UI/UX", "WEB DEVELOPMENT", "PERFORMANCE"],
     tone: "stone",
+  },
+  {
+    number: "03",
+    title: "HS Wear",
+    category: "FASHION E-COMMERCE · HSWear.STORE",
+    description: "A focused fashion storefront for presenting apparel with editorial product discovery, smooth shopping flows, and a confident digital identity.",
+    image: hsWearVisual,
+    tags: ["E-COMMERCE", "PRODUCT UI", "CHECKOUT", "PERFORMANCE"],
+    tone: "gold",
+    link: "https://hswear.store",
+  },
+  {
+    number: "04",
+    title: "By Salma",
+    category: "JEWELRY STORE · E-COMMERCE EXPERIENCE",
+    description: "An elegant jewelry-store experience built around visual storytelling, product detail, and the quiet confidence of a considered luxury brand.",
+    image: bySalmaVisual,
+    tags: ["JEWELRY", "SHOPIFY", "UI/UX", "CONVERSION"],
+    tone: "stone",
+  },
+  {
+    number: "05",
+    title: "AI SaaS Chatbot",
+    category: "AI SAAS · MULTI-TENANT CHATBOT",
+    description: "A scalable AI SaaS direction for teams that need intelligent conversations, organized workspaces, and clear product-level control over assistance.",
+    image: aiSaasVisual,
+    tags: ["AI SAAS", "CHATBOT", "RBAC", "ANALYTICS"],
+    tone: "gold",
   },
 ];
 
@@ -102,6 +151,13 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [sent, setSent] = useState(false);
   const [projectFilter, setProjectFilter] = useState("ALL WORK");
+  const [puzzlePoint, setPuzzlePoint] = useState({ x: 50, y: 50 });
+  const [puzzleReady, setPuzzleReady] = useState(false);
+  const puzzlePieces = useMemo(() => Array.from({ length: 1000 }, (_, index) => index), []);
+  useEffect(() => {
+    const timer = window.setTimeout(() => setPuzzleReady(true), 11200);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   const filteredProjects = projectFilter === "ALL WORK"
     ? projects
@@ -139,18 +195,28 @@ export default function Home() {
 
       <section className="hero-section section-wrap">
         <div className="hero-backdrop" style={{ backgroundImage: `url(${heroTexture})` }} />
+        <div className="orbital-accent" style={{ backgroundImage: `url(${orbitalAccent})` }} aria-hidden="true" />
         <div className="hero-copy">
           <p className="eyebrow"><span className="signal-dot" /> AVAILABLE FOR SELECTED WORK</p>
           <h1>I BUILD<br /><em>WHAT'S NEXT.</em></h1>
           <p className="hero-lede">Full stack developer and AI product builder translating ambitious ideas into dependable digital experiences.</p>
           <div className="hero-actions">
             <button className="button button-primary" onClick={() => scrollToSection("projects")}>Explore my work <ArrowUpRight size={16} /></button>
-            <a className="button button-quiet" href="mailto:hanzala7824@gmail.com">Start a conversation <Send size={15} /></a>
+            <a className="button button-quiet" href={cvUrl} download="Hanzala-Saqib-CV.pdf">Download CV <Download size={15} /></a>
           </div>
           <div className="hero-meta"><span>LAHORE, PK</span><span className="meta-rule" /><span>UTC +05:00</span></div>
         </div>
         <div className="hero-portrait-wrap">
-          <div className="portrait-frame"><img src={headshot} alt="Portrait of Hanzala Saqib" /></div>
+          <div className="portrait-frame puzzle-frame" onPointerMove={(event) => {
+            const rect = event.currentTarget.getBoundingClientRect();
+            setPuzzlePoint({ x: ((event.clientX - rect.left) / rect.width) * 100, y: ((event.clientY - rect.top) / rect.height) * 100 });
+          }}>
+            <img src={headshot} alt="Portrait of Hanzala Saqib" />
+            <div className={`puzzle-layer ${puzzleReady ? "puzzle-complete" : ""}`} style={{ "--cursor-x": `${puzzlePoint.x}%`, "--cursor-y": `${puzzlePoint.y}%` } as React.CSSProperties} aria-hidden="true">
+              {puzzlePieces.map((piece) => <span key={piece} style={{ "--piece": piece } as React.CSSProperties} />)}
+            </div>
+            <div className="puzzle-caption">1000 SIGNAL PIECES · REVEAL 11.2S</div>
+          </div>
           <div className="portrait-caption"><span>01</span><span>ENGINEER / DESIGNER</span><span>SCROLL TO EXPLORE ↓</span></div>
           <div className="portrait-ring" />
         </div>
@@ -169,10 +235,10 @@ export default function Home() {
           </div>
         </div>
         <div className="signal-stats">
-          <div><strong>40<span>+</span></strong><small>PROJECTS SHIPPED</small></div>
-          <div><strong>04</strong><small>CORE DISCIPLINES</small></div>
-          <div><strong>01</strong><small>FULL LIFECYCLE MINDSET</small></div>
-          <div><strong>24<span>/7</span></strong><small>CURIOSITY ACTIVE</small></div>
+          <div><strong><CountUp value={40} suffix="+" /></strong><small>PROJECTS SHIPPED</small></div>
+          <div><strong><CountUp value={5} /></strong><small>ACTIVE PROJECT LANES</small></div>
+          <div><strong><CountUp value={4} /></strong><small>CORE DISCIPLINES</small></div>
+          <div><strong><CountUp value={100} suffix="%" /></strong><small>CURIOSITY ACTIVE</small></div>
         </div>
       </section>
 
@@ -184,7 +250,7 @@ export default function Home() {
             <article className={`project-card project-${project.tone}`} key={project.title}>
               <div className="project-number">{project.number}</div>
               <div className="project-visual"><img src={project.image} alt={`${project.title} project preview`} /><div className="visual-overlay"><span>VIEW CASE STUDY</span><ArrowUpRight size={18} /></div></div>
-              <div className="project-info"><p className="project-category">{project.category}</p><h3>{project.title}</h3><p className="project-description">{project.description}</p><div className="tag-list">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div><button className="project-link" onClick={() => setSent(false)}>Explore project <ChevronRight size={15} /></button></div>
+              <div className="project-info"><p className="project-category">{project.category}</p><h3>{project.title}</h3><p className="project-description">{project.description}</p><div className="tag-list">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>{project.link ? <a className="project-link" href={project.link} target="_blank" rel="noreferrer">Visit live store <ArrowUpRight size={15} /></a> : <button className="project-link" onClick={() => setSent(false)}>Explore project <ChevronRight size={15} /></button>}</div>
             </article>
           ))}
         </div>
