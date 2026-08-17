@@ -1,11 +1,11 @@
-# Portfolio Refinement Tasks
+# Portfolio Visual Refinement Tasks
 
-The reference-based refinement pass is complete and verified.
+The latest refinement pass is complete and verified.
 
 | Refinement | Status | Implementation |
 |---|---|---|
-| Remove animated counting | Complete | Replaced count-up statistics with static AI, WEB, UX, and 24/7 editorial notes. |
-| Improve logo treatment | Complete | Added a refined geometric HS monogram asset in the header brand lockup. |
-| Add side accents | Complete | Added a framed vertical HS / 2026 / FULL STACK · AI · WEB rail and signal marker. |
-| Replace CV asset | Complete | Download CV now uses Hanzala_Saqib_AI_FullStack_Resume.pdf. |
-| Verify desktop and mobile | Complete | TypeScript check passed and desktop/mobile hero screenshots were captured. |
+| Remove portrait puzzle caption | Complete | Removed the “1000 SIGNAL PIECES · REVEAL 11.2S” label while preserving the portrait interaction. |
+| Remove navigation numbers | Complete | Navigation now shows ABOUT, PROJECTS, SKILLS, EXPERIENCE, and CONTACT without 01–05 prefixes. |
+| Preserve brand lockup | Complete | HS monogram and HANZALA SAQIB remain in the header. |
+| Add 3D animated background | Complete | Added layered perspective orbits, a glowing core, floating particles, and reduced-motion support. |
+| Verify desktop and mobile | Complete | TypeScript check passed and the updated desktop hero was visually verified. |

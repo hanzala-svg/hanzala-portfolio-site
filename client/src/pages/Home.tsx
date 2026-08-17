@@ -183,7 +183,7 @@ export default function Home() {
         <nav className={menuOpen ? "primary-nav is-open" : "primary-nav"} aria-label="Primary navigation">
           {["about", "projects", "skills", "experience", "contact"].map((item, index) => (
             <button key={item} onClick={() => { scrollToSection(item); setMenuOpen(false); }}>
-              <span>0{index + 1}</span>{item.toUpperCase()}
+              {item.toUpperCase()}
             </button>
           ))}
         </nav>
@@ -197,6 +197,7 @@ export default function Home() {
       <section className="hero-section section-wrap">
         <div className="hero-backdrop" style={{ backgroundImage: `url(${heroTexture})` }} />
         <div className="orbital-accent" style={{ backgroundImage: `url(${orbitalAccent})` }} aria-hidden="true" />
+        <div className="depth-field" aria-hidden="true"><span className="depth-orbit depth-orbit-one" /><span className="depth-orbit depth-orbit-two" /><span className="depth-orbit depth-orbit-three" /><span className="depth-core" /><span className="depth-particle depth-particle-one" /><span className="depth-particle depth-particle-two" /><span className="depth-particle depth-particle-three" /></div>
         <div className="hero-copy">
           <p className="eyebrow"><span className="signal-dot" /> AVAILABLE FOR SELECTED WORK</p>
           <h1>I BUILD<br /><em>WHAT'S NEXT.</em></h1>
@@ -216,7 +217,7 @@ export default function Home() {
             <div className={`puzzle-layer ${puzzleReady ? "puzzle-complete" : ""}`} style={{ "--cursor-x": `${puzzlePoint.x}%`, "--cursor-y": `${puzzlePoint.y}%` } as React.CSSProperties} aria-hidden="true">
               {puzzlePieces.map((piece) => <span key={piece} style={{ "--piece": piece } as React.CSSProperties} />)}
             </div>
-            <div className="puzzle-caption">1000 SIGNAL PIECES · REVEAL 11.2S</div>
+            
           </div>
           <div className="portrait-caption"><span>01</span><span>ENGINEER / DESIGNER</span><span>SCROLL TO EXPLORE ↓</span></div>
           <div className="portrait-ring" />
