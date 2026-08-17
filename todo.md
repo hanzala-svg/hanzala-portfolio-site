@@ -1,11 +1,11 @@
-# Portfolio Interaction Refinement Tasks
+# New GitHub Deployment Tasks
 
-The latest interaction pass is complete and verified.
-
-| Refinement | Status | Implementation |
+| Task | Status | Notes |
 |---|---|---|
-| Remove project actions | Complete | Removed VIEW CASE STUDY, EXPLORE PROJECT, and visible detail-action labels from project cards. HS Wear and By Salma detail modals remain accessible by clicking the cards. |
-| Add hover effects | Complete | Added card lift, image zoom, glowing markers, border transitions, and control hover states. |
-| Add keyframes | Complete | Added marquee motion and animated visual accents with reduced-motion support. |
-| Rotating skills line | Complete | Added a single-line technology marquee that continuously rotates and pauses on hover. |
-| Verify desktop and mobile | Complete | TypeScript check passed and the updated desktop hero was visually verified. |
+| Inspect connected GitHub account | Pending | Confirm the active username and repository creation permission. |
+| Choose repository name | Pending | Suggested: `hanzala-portfolio-site`. |
+| Prepare corrected source | Complete | Local `/assets/` references and all pictures/CV are available. |
+| Include pictures and PDFs | Complete | Include all portfolio PNG images, generated project visuals, and both CV PDF files. |
+| Create new repository | Pending | Create a public repository under the connected account. |
+| Push source and Pages workflow | Pending | Push main branch and deploy from GitHub Actions. |
+| Verify live URL | Pending | Confirm the Pages URL after Actions completes. |
