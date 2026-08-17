@@ -1,9 +1,11 @@
-# GitHub Pages Troubleshooting Tasks
+# Portfolio Interaction Refinement Tasks
 
-| Task | Status | Notes |
+The latest interaction pass is complete and verified.
+
+| Refinement | Status | Implementation |
 |---|---|---|
-| Confirm repository URL | Complete | `https://github.com/hanzalasqb/portfolio-.git` |
-| Confirm Pages source | Pending | Verify Settings → Pages uses GitHub Actions. |
-| Confirm workflow result | Pending | Check Actions for a successful build/deploy run. |
-| Confirm repository path and base | Pending | Verify `/portfolio-/` is used in the Vite base and URL. |
-| Verify deployed URL | Pending | Test `https://hanzalasqb.github.io/portfolio-/`. |
+| Remove project actions | Complete | Removed VIEW CASE STUDY, EXPLORE PROJECT, and visible detail-action labels from project cards. HS Wear and By Salma detail modals remain accessible by clicking the cards. |
+| Add hover effects | Complete | Added card lift, image zoom, glowing markers, border transitions, and control hover states. |
+| Add keyframes | Complete | Added marquee motion and animated visual accents with reduced-motion support. |
+| Rotating skills line | Complete | Added a single-line technology marquee that continuously rotates and pauses on hover. |
+| Verify desktop and mobile | Complete | TypeScript check passed and the updated desktop hero was visually verified. |
