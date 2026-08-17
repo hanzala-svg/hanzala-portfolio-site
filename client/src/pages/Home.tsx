@@ -98,6 +98,8 @@ const projects = [
   },
 ];
 
+const rotatingSkills = ["REACT.JS", "TYPESCRIPT", "NODE.JS", "EXPRESS", "MONGODB", "AWS EC2", "DOCKER", "GENERATIVE AI", "AI CHATBOT FLOWS", "SHOPIFY", "UI/UX", "CORE WEB VITALS"];
+
 const skillGroups = [
   {
     icon: Code2,
@@ -249,10 +251,10 @@ export default function Home() {
         <div className="projects-intro"><h2>Selected work.<br /><em>Engineered value.</em></h2><p>Two current directions, one consistent standard: useful products with a point of view.</p></div>
         <div className="project-list">
           {filteredProjects.map((project, index) => (
-            <article className={`project-card project-${project.tone}`} key={project.title}>
+            <article className={`project-card project-${project.tone} ${project.details ? "project-card-clickable" : ""}`} key={project.title} onClick={project.details ? () => setSelectedProject(project) : undefined}>
               <div className="project-number">{project.number}</div>
-              <div className="project-visual"><img src={project.image} alt={`${project.title} project preview`} /><div className="visual-overlay"><span>VIEW CASE STUDY</span><ArrowUpRight size={18} /></div></div>
-              <div className="project-info"><p className="project-category">{project.category}</p><h3>{project.title}</h3><p className="project-description">{project.description}</p><div className="tag-list">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>{project.details ? <button className="project-link" onClick={() => setSelectedProject(project)}>View project details <ArrowUpRight size={15} /></button> : <button className="project-link" onClick={() => setSent(false)}>Explore project <ChevronRight size={15} /></button>}</div>
+              <div className="project-visual"><img src={project.image} alt={`${project.title} project preview`} /><div className="visual-overlay" aria-hidden="true"><ArrowUpRight size={18} /></div></div>
+              <div className="project-info"><p className="project-category">{project.category}</p><h3>{project.title}</h3><p className="project-description">{project.description}</p><div className="tag-list">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div>
             </article>
           ))}
         </div>
@@ -261,6 +263,7 @@ export default function Home() {
       <section id="skills" className="section-wrap skills-section">
         <div className="section-heading"><p className="section-kicker">03 / TECH STACK</p><span className="heading-rule" /></div>
         <div className="skills-header"><div><h2>Systems that hold<br /><em>under pressure.</em></h2><div className="skill-filters" role="tablist" aria-label="Filter skills"><button className={skillFocus === "ALL SKILLS" ? "active" : ""} onClick={() => setSkillFocus("ALL SKILLS")}>ALL SKILLS</button><button className={skillFocus === "AI" ? "active" : ""} onClick={() => setSkillFocus("AI")}>AI / DATA</button><button className={skillFocus === "WEB" ? "active" : ""} onClick={() => setSkillFocus("WEB")}>WEB / CLOUD</button></div></div><p>Modern tools matter. Knowing when—and how—to use them matters more. Select a lane to see the technologies used across the work.</p></div>
+        <div className="skills-marquee" aria-label="Technologies used"><div className="skills-marquee-track">{[...rotatingSkills, ...rotatingSkills].map((skill, index) => <span key={`${skill}-${index}`}>{skill}<b>✦</b></span>)}</div></div>
         <div className="skill-grid">{skillGroups.map(({ icon: Icon, title, items, category }) => <article className={`skill-card ${skillFocus !== "ALL SKILLS" && skillFocus !== category ? "skill-card-muted" : ""}`} key={title} onClick={() => setSkillFocus(category)}><Icon size={22} strokeWidth={1.5} /><p className="skill-category">{category === "AI" ? "AI / DATA" : "WEB / CLOUD"}</p><h3>{title}</h3><div>{items.map((item) => <span key={item}><Check size={12} />{item}</span>)}</div></article>)}</div>
       </section>
 
