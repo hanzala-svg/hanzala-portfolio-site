@@ -192,12 +192,7 @@ export default function Home() {
         </button>
       </header>
 
-      <div id="top" className="side-index" aria-hidden="true">
-        <span className="side-index-label">HS / 2026</span>
-        <span className="side-index-line" />
-        <span className="side-index-label">FULL STACK · AI · WEB</span>
-        <span className="side-index-signal">◈</span>
-      </div>
+      <div id="top" className="side-index" aria-hidden="true" />
 
       <section className="hero-section section-wrap">
         <div className="hero-backdrop" style={{ backgroundImage: `url(${heroTexture})` }} />
