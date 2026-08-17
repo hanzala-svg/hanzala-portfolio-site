@@ -21,18 +21,19 @@ import {
   X,
 } from "lucide-react";
 
-const headshot = "/assets/hanzala-headshot.png";
-const logo = "/assets/hs-monogram-refined.png";
-const cvUrl = "/assets/Hanzala-Saqib-AI-FullStack-Resume.pdf";
-const orbitalAccent = "/assets/orbital-3d-accent.png";
-const hsWearVisual = "/assets/hs-wear-visual.png";
-const bySalmaVisual = "/assets/by-salma-visual.png";
-const aiSaasVisual = "/assets/ai-saas-chatbot-visual.png";
-const hsWearMobileVisual = "/assets/hs-wear-mobile-visual.png";
-const bySalmaMobileVisual = "/assets/by-salma-mobile-visual.png";
-const heroTexture = "/assets/signal-noir-hero.png";
-const hsWorkspaceVisual = "/assets/hs-workspace-visual.png";
-const zyvenoxVisual = "/assets/zyvenox-lab-visual.png";
+const asset = (name: string) => `${import.meta.env.BASE_URL}assets/${name}`;
+const headshot = asset("hanzala-headshot.png");
+const logo = asset("hs-monogram-refined.png");
+const cvUrl = asset("Hanzala-Saqib-AI-FullStack-Resume.pdf");
+const orbitalAccent = asset("orbital-3d-accent.png");
+const hsWearVisual = asset("hs-wear-visual.png");
+const bySalmaVisual = asset("by-salma-visual.png");
+const aiSaasVisual = asset("ai-saas-chatbot-visual.png");
+const hsWearMobileVisual = asset("hs-wear-mobile-visual.png");
+const bySalmaMobileVisual = asset("by-salma-mobile-visual.png");
+const heroTexture = asset("signal-noir-hero.png");
+const hsWorkspaceVisual = asset("hs-workspace-visual.png");
+const zyvenoxVisual = asset("zyvenox-lab-visual.png");
 
 
 const projects = [
